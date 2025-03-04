@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truco Online</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div id="welcome-screen" class="screen active">
+            <h1>Truco Online</h1>
+            <div class="options">
+                <button id="create-room-btn" class="btn">Criar Sala</button>
+                <div class="join-room">
+                    <input type="text" id="room-code-input" placeholder="Código da Sala">
+                    <button id="join-room-btn" class="btn">Entrar na Sala</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="waiting-room" class="screen">
+            <h2>Sala de Espera</h2>
+            <div class="room-info">
+                <p>Código da Sala: <span id="room-code-display"></span></p>
+                <button id="copy-code-btn" class="btn-small"><i class="fas fa-copy"></i> Copiar</button>
+            </div>
+            <div class="players-list">
+                <h3>Jogadores</h3>
+                <ul id="players-list"></ul>
+            </div>
+            <p id="waiting-message">Aguardando jogadores... (0/4)</p>
+            <button id="start-game-btn" class="btn" disabled>Iniciar Jogo</button>
+            <button id="leave-room-btn" class="btn btn-secondary">Sair da Sala</button>
+        </div>
+
+        <div id="game-screen" class="screen">
+            <div class="game-info">
+                <div class="score">
+                    <div class="team">Nós: <span id="team1-score">0</span></div>
+                    <div class="team">Eles: <span id="team2-score">0</span></div>
+                </div>
+                <div class="round-info">
+                    <div class="truco-value">Valor: <span id="truco-value">1</span></div>
+                    <div class="current-turn">Vez de: <span id="current-player"></span></div>
+                </div>
+            </div>
+
+            <div class="game-table">
+                <div class="opponent opponent-left" id="player1">
+                    <div class="player-info">
+                        <span class="player-name">Jogador 1</span>
+                        <span class="player-cards-count">3</span>
+                    </div>
+                    <div class="player-cards"></div>
+                </div>
+                <div class="opponent opponent-top" id="player2">
+                    <div class="player-info">
+                        <span class="player-name">Jogador 2</span>
+                        <span class="player-cards-count">3</span>
+                    </div>
+                    <div class="player-cards"></div>
+                </div>
+                <div class="opponent opponent-right" id="player3">
+                    <div class="player-info">
+                        <span class="player-name">Jogador 3</span>
+                        <span class="player-cards-count">3</span>
+                    </div>
+                    <div class="player-cards"></div>
+                </div>
+
+                <div class="table-center">
+                    <div class="played-cards"></div>
+                    <div class="vira-card"></div>
+                </div>
+
+                <div class="current-player" id="player0">
+                    <div class="player-info">
+                        <span class="player-name">Você</span>
+                    </div>
+                    <div class="player-cards"></div>
+                    <div class="player-actions">
+                        <button id="truco-btn" class="btn-action">Truco!</button>
+                        <button id="run-btn" class="btn-action">Correr</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="game-over" class="screen">
+            <h2>Fim de Jogo</h2>
+            <div id="winner-display"></div>
+            <div class="final-score">
+                <p>Nós: <span id="final-team1-score">0</span></p>
+                <p>Eles: <span id="final-team2-score">0</span></p>
+            </div>
+            <button id="new-game-btn" class="btn">Novo Jogo</button>
+            <button id="return-home-btn" class="btn btn-secondary">Voltar ao Início</button>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Game Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/card.js"></script>
+    <script src="js/deck.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/room.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
